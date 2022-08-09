@@ -1,0 +1,22 @@
+{
+  "name": "typescript-repl-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "test": "tsc && cd tests && node index.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.13"
+  }
+}

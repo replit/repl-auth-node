@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../lib/index.d.ts"],
+  "sourcesContent": ["import { Request } from 'express';\ninterface UserInfo {\n    id?: string;\n    name?: string;\n    bio?: string;\n    url?: string;\n    profileImage?: string;\n    roles?: Array<string>;\n    teams?: Array<string>;\n}\nexport declare const getUserInfo: (req: Request) => UserInfo | null;\nexport {};\n"],
+  "mappings": ";;AAAA;",
+  "names": []
+}
