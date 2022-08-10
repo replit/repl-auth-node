@@ -10,6 +10,7 @@ interface UserInfo {
   teams?: Array<string>
 }
 
+//remove header prefix and convert to camel case
 function cleanHeader(headerName: string): keyof UserInfo {
   return headerName.replace("x-replit-user-", "").replace(/-(.)/g, function(_, group1) {
     return group1.toUpperCase();
