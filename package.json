@@ -7,11 +7,16 @@
     "test": "tests"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "test": "tsc && cd tests && node index.js",
-    "build": "tsc"
+    "test": "tsc && cd tests && node index.test.js",
+    "build": "tsc",
+    "lint": "eslint .  --ext .ts && eslint . --ext .js",
+    "lint-fix": "eslint --fix .  --ext .ts && eslint --fix .  --ext .js"
   },
   "keywords": [],
   "author": "",

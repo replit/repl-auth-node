@@ -1,5 +1,5 @@
 compile = "./.config/build.sh"
-run = "node --enable-source-maps tests/index.js"
+run = "node --enable-source-maps tests/index.test.js"
 entrypoint = "index.ts"
 
 [languages.typescript]

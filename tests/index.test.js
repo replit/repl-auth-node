@@ -1,5 +1,5 @@
-const express = require('express');
-const { getUserInfo } = require('../lib/index.js')
+import express from 'express'
+import { getUserInfo } from '../lib/index.js'
 
 const app = express();
 app.use(express.static('public'));

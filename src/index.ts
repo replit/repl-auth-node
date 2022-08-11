@@ -11,6 +11,7 @@ interface UserInfo {
 }
 
 //remove header prefix and convert to camel case
+//doesn't affect the value
 function cleanHeader(headerName: string): keyof UserInfo {
   return headerName.replace("x-replit-user-", "").replace(/-(.)/g, function(_, group1) {
     return group1.toUpperCase();
@@ -19,19 +20,19 @@ function cleanHeader(headerName: string): keyof UserInfo {
 
 
 export const getUserInfo = (req: Request): UserInfo | null => {
-  let { headers } = req
-  let userInfo: UserInfo = {}
+  const { headers } = req
+  const userInfo: UserInfo = {}
 
-  for (let headerName of Object.keys(headers)) {
-    const headerValue = (headers as any)[headerName]
-    if (headerName.startsWith("x-replit-") && headerValue) {
-      const cleanHeaderName: keyof UserInfo = cleanHeader(headerName)
+  for (const headerName of Object.keys(headers)) {
+    const headerValue = headers[headerName]
+    if (headerName.startsWith("x-replit-") && headerValue && typeof headerValue === 'string') {
+      const cleanHeaderName = cleanHeader(headerName)
 
       //check if property is meant to be an array
       if (cleanHeaderName === 'roles' || cleanHeaderName === 'teams') {
-        userInfo[cleanHeaderName] = headerValue.split(',') as string & string[]
+        userInfo[cleanHeaderName] = (headerValue).split(',')
       } else {
-        userInfo[cleanHeaderName] = headerValue as string & string[]
+        userInfo[cleanHeaderName] = headerValue
       }
     }
   }
