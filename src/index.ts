@@ -1,27 +1,31 @@
-import { Request } from 'express';
+export interface RequestLike {
+  headers: { [key: string]: string}
+}
 
-interface UserInfo {
+export interface UserInfo {
   id?: string;
   name?: string;
   bio?: string;
   url?: string;
   profileImage?: string;
-  roles?: Array<string>
-  teams?: Array<string>
+  roles?: Array<string>;
+  teams?: Array<string>;
 }
 
 //remove header prefix and convert to camel case
 //doesn't affect the value
-function cleanHeader(headerName: string): keyof UserInfo {
+function cleanHeader(headerName: string): string {
   return headerName.replace("x-replit-user-", "").replace(/-(.)/g, function(_, group1) {
     return group1.toUpperCase();
-  }) as keyof UserInfo
+  })
 }
 
-
-export const getUserInfo = (req: Request): UserInfo | null => {
-  const { headers } = req
-  const userInfo: UserInfo = {}
+/**
+* Gets all user info. Returns a UserInfo object if the user is logged in.
+*/
+export const getUserInfo = (request: RequestLike): UserInfo | null => {
+  const { headers } = request
+  const userInfo: { [key: string]: string | string[] } = {}
 
   for (const headerName of Object.keys(headers)) {
     const headerValue = headers[headerName]

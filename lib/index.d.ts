@@ -1,5 +1,9 @@
-import { Request } from 'express';
-interface UserInfo {
+export interface RequestLike {
+    headers: {
+        [key: string]: string;
+    };
+}
+export interface UserInfo {
     id?: string;
     name?: string;
     bio?: string;
@@ -8,5 +12,4 @@ interface UserInfo {
     roles?: Array<string>;
     teams?: Array<string>;
 }
-export declare const getUserInfo: (req: Request) => UserInfo | null;
-export {};
+export declare const getUserInfo: (req: RequestLike) => UserInfo | null;
