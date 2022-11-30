@@ -5,7 +5,7 @@ Repl Authentication is a simple way to allow users to log in, and access their i
 Ensure that a user is logged in with replit following [our docs](https://docs.replit.com/hosting/authenticating-users-repl-auth)
 ```js
 const express = require('express'); 
-const { getUserInfo } = require('../index.js')
+const { getUserInfo } = require('@replit/repl-auth')
 
 const app = express();
 app.use(express.static('public'));

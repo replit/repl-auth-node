@@ -1,5 +1,6 @@
 import express from 'express'
 import { getUserInfo } from '../lib/index.js'
+import path from "path"
 
 const app = express();
 app.use(express.static('public'));
@@ -26,7 +27,7 @@ app.get('/', async function(req, res) {
     }
     res.send("server tests passed, " + userInfo.name)
   } else {
-    res.sendFile(__dirname + '/public/login.html'); // Send a login page if they are not.
+    res.sendFile(path.resolve('public/login.html')); // Send a login page if they are not.
   }
 });
 
@@ -35,5 +36,5 @@ app.get('/home', function(req, res) {
 });
 
 app.listen(8080, function() { // Start the server
-  console.log('Server up!');
+  console.log('Server up! Visit http://localhost:8080');
 });
