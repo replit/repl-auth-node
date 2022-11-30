@@ -20,8 +20,11 @@ function cleanHeader(headerName: string): string {
   })
 }
 
-export const getUserInfo = (req: RequestLike): UserInfo | null => {
-  const { headers } = req
+/**
+* Gets all user info. Returns a UserInfo object if the user is logged in.
+*/
+export const getUserInfo = (request: RequestLike): UserInfo | null => {
+  const { headers } = request
   const userInfo: { [key: string]: string | string[] } = {}
 
   for (const headerName of Object.keys(headers)) {

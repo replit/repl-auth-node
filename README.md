@@ -18,16 +18,19 @@ app.get('/', async function(req, res) {
 
 ## Docs
 
-> `getUserInfo(Request req)`
+> `getUserInfo(RequestLike request)`
 
-Gets all user info. Returns UserInfo object.
+Gets all user info. Returns a UserInfo object if the user is logged in.
 ```js
 const userInfo = getUserInfo(req)
 ```
 
-UserInfo object:
-```
-UserInfo {
+UserInfo type object:
+```ts
+// You can import it:
+import type { UserInfo } from "@replit/repl-auth"
+
+interface UserInfo {
   id?: string;
   name?: string;
   bio?: string;
@@ -43,4 +46,4 @@ UserInfo {
 ```sh
 npm run test
 ```
-Then login and assure that it says "server tests passed"
+Then log in (not on localhost) and assure that it says `server tests passed`
